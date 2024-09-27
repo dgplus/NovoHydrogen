@@ -139,37 +139,38 @@
                 //Add the the layer to the map
                 map.addLayer({
                     'id': 'csvData',
-                    'type': 'circle',
+                    'type': 'symbol',
                     'source': {
                         'type': 'geojson',
                         'data': geojson
                     },
                     'paint': {
-                        'circle-radius': 5,
-                        'circle-color': [
-                            "match",
-                            ["get", "PowerSource"],
-                            ["Solar"],
-                            "#f4e158",
-                            ["Solar + Wind"],
-                            "#b21fc8",
-                            ["Solar + Virtual Wind"],
-                            "#71e5f5",
-                            "#71e5f5"
-                        ],
-                        'circle-opacity': 0.7,
-                        'circle-stroke-color': [
-                            "match",
-                            ["get", "PowerSource"],
-                            ["Solar"],
-                            "#f4e158",
-                            ["Solar + Wind"],
-                            "#b21fc8",
-                            ["Solar + Virtual Wind"],
-                            "#71e5f5",
-                            "#71e5f5"
-                        ],
-                        'circle-stroke-width': 0.75
+                        'icon-size': 10,
+                        'icon-image': ,
+                        // [
+                        //     "match",
+                        //     ["get", "PowerSource"],
+                        //     ["Solar"],
+                        //     "#f4e158",
+                        //     ["Solar + Wind"],
+                        //     "#b21fc8",
+                        //     ["Solar + Virtual Wind"],
+                        //     "#71e5f5",
+                        //     "#71e5f5"
+                        // ],
+                        // 'circle-opacity': 0.7,
+                        // 'circle-stroke-color': [
+                        //     "match",
+                        //     ["get", "PowerSource"],
+                        //     ["Solar"],
+                        //     "#f4e158",
+                        //     ["Solar + Wind"],
+                        //     "#b21fc8",
+                        //     ["Solar + Virtual Wind"],
+                        //     "#71e5f5",
+                        //     "#71e5f5"
+                        // ],
+                        // 'circle-stroke-width': 0.75
                     }
                 });
 
