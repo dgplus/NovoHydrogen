@@ -1,8 +1,33 @@
 body {
     margin: 0;
     padding: 0;
-    font: normal 14px/22px 'Open Sans';
+    font: normal 14px/22px 'PT Sans';
 }
+
+.pt-sans-regular {
+    font-family: "PT Sans", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+  }
+  
+  .pt-sans-bold {
+    font-family: "PT Sans", sans-serif;
+    font-weight: 700;
+    font-style: normal;
+  }
+  
+  .pt-sans-regular-italic {
+    font-family: "PT Sans", sans-serif;
+    font-weight: 400;
+    font-style: italic;
+  }
+  
+  .pt-sans-bold-italic {
+    font-family: "PT Sans", sans-serif;
+    font-weight: 700;
+    font-style: italic;
+  }
+
 #map {
     position: absolute;
     top: 0;
@@ -14,7 +39,7 @@ body {
     margin: 5px;
 }
 .mapboxgl-map {
-    font: normal 13px/20px 'Open Sans' !important;
+    font: normal 13px/20px 'PT Sans' !important;
 }
 .map-overlay {
     position: absolute;
@@ -108,28 +133,4 @@ h4 {
     margin-bottom: 10px;
     cursor: pointer;
 }
-
-.pt-sans-regular {
-    font-family: "PT Sans", sans-serif;
-    font-weight: 400;
-    font-style: normal;
-  }
-  
-  .pt-sans-bold {
-    font-family: "PT Sans", sans-serif;
-    font-weight: 700;
-    font-style: normal;
-  }
-  
-  .pt-sans-regular-italic {
-    font-family: "PT Sans", sans-serif;
-    font-weight: 400;
-    font-style: italic;
-  }
-  
-  .pt-sans-bold-italic {
-    font-family: "PT Sans", sans-serif;
-    font-weight: 700;
-    font-style: italic;
-  }
   
