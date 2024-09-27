@@ -125,6 +125,14 @@
                     makeGeoJSON(csvData);
                 }
             });
+            map.loadImage(
+            'images/NovoHydrogen_Mark.png',
+            (error, image) => {
+                if (error) throw error;
+
+                // Add the image to the map style.
+                map.addImage('NovoIcon', image);
+            });
         });
 
         function makeGeoJSON(csvData) {
@@ -146,7 +154,7 @@
                     },
                     'layout': {
                         'icon-size': 10,
-                        'icon-image': 'images/NovoHydrogen_Mark.png'
+                        'icon-image': 'NovoIcon'
                         // [
                         //     "match",
                         //     ["get", "PowerSource"],
