@@ -10,8 +10,11 @@
     <link href='https://api.mapbox.com/mapbox-gl-js/v2.0.1/mapbox-gl.css' rel='stylesheet' />
     <script src='https://npmcdn.com/csv2geojson@latest/csv2geojson.js'></script>
     <script src='https://npmcdn.com/@turf/turf/turf.min.js'></script>
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,300" rel="stylesheet" type="text/css">
     <link href="css/map-styles.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=PT+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+        rel="stylesheet">
     <style>
         .map-overlay {
             width: auto;
@@ -126,13 +129,13 @@
                 }
             });
             map.loadImage(
-            'images/NovoHydrogen_Mark.png',
-            (error, image) => {
-                if (error) throw error;
+                'images/NovoHydrogen_Mark.png',
+                (error, image) => {
+                    if (error) throw error;
 
-                // Add the image to the map style.
-                map.addImage('NovoIcon', image);
-            });
+                    // Add the image to the map style.
+                    map.addImage('NovoIcon', image);
+                });
         });
 
         function makeGeoJSON(csvData) {
@@ -254,7 +257,7 @@
                         elem.requestFullscreen().catch((err) => {
                             alert(
                                 `Error attempting to enable fullscreen mode: ${err.message} (${err.name})`
-                                );
+                            );
                         });
                     } else {
                         document.exitFullscreen();
