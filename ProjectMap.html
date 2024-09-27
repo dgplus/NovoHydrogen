@@ -125,6 +125,10 @@
                     makeGeoJSON(csvData);
                 }
             });
+            map.loadImage('https://github.com/dgplus/NovoHydrogen/blob/67c7373db5e5f73affc7f10579de75a3f9fb1ce5/images/NovoHydrogen_Mark.png'(error, image) => {
+                if (error) throw error;
+                maop.addImage('Novo-icon', image, { 'sdf': true});
+            })
         });
 
         function makeGeoJSON(csvData) {
@@ -144,9 +148,9 @@
                         'type': 'geojson',
                         'data': geojson
                     },
-                    'paint': {
+                    'layout': {
                         'icon-size': 10,
-                        'icon-image': 'https://github.com/dgplus/NovoHydrogen/blob/67c7373db5e5f73affc7f10579de75a3f9fb1ce5/images/NovoHydrogen_Mark.png',
+                        'icon-image': 'Novo-icon'
                         // [
                         //     "match",
                         //     ["get", "PowerSource"],
