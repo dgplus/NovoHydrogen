@@ -36,51 +36,7 @@
         <div id="legend"></div>
         <div class="map-overlay top">
             <div class="map-overlay-inner">
-                <h3>CO2 Emissions of <br> Power Plants in the US</h3>
-                <div class='menu'>
-                    <strong>Show/Hide Features</strong>
-                    <hr />
-                    <label class='menu-item'>
-                        <input type='checkbox' id='SOLAR' value='SOLAR' checked />
-                        Solar
-                    </label>
-                    <label class='menu-item'>
-                        <input type='checkbox' id='WIND' value='WIND' checked />
-                        Wind
-                    </label>
-                    <label class='menu-item'>
-                        <input type='checkbox' id='HYDRO' value='HYDRO' checked />
-                        Hydro
-                    </label>
-                    <label class='menu-item'>
-                        <input type='checkbox' id='GEOTHERMAL' value='GEOTHERMAL' checked />
-                        Geothermal
-                    </label>
-                    <label class='menu-item'>
-                        <input type='checkbox' id='BIOMASS' value='BIOMASS' checked />
-                        Biomass
-                    </label>
-                    <label class='menu-item'>
-                        <input type='checkbox' id='NUCLEAR' value='NUCLEAR' checked />
-                        Nuclear
-                    </label>
-                    <label class='menu-item'>
-                        <input type='checkbox' id='OIL' value='OIL' checked />
-                        Oil
-                    </label>
-                    <label class='menu-item'>
-                        <input type='checkbox' id='COAL' value='COAL' checked />
-                        Coal
-                    </label>
-                    <label class='menu-item'>
-                        <input type='checkbox' id='GAS' value='GAS' checked />
-                        Gas
-                    </label>
-                    <label class='menu-item'>
-                        <input type='checkbox' id='OTHER' value='OTHER' checked />
-                        Other
-                    </label>
-                </div>
+                <h3>NovoHydrogen Project Map</h3>
             </div>
         </div>
         <div id="fullscreen">Full screen</div>
@@ -119,29 +75,29 @@
             transformRequest: transformRequest
         });
 
-        const checkboxes = document.querySelectorAll("input[type=checkbox]");
-        checkboxes.forEach(checkbox => {
-            checkbox.addEventListener("change", () => {
-                filterFeatures();
-            });
-        });
+        // const checkboxes = document.querySelectorAll("input[type=checkbox]");
+        // checkboxes.forEach(checkbox => {
+        //     checkbox.addEventListener("change", () => {
+        //         filterFeatures();
+        //     });
+        // });
 
-        function filterFeatures() {
-            // Get all checked checkboxes
-            const checkedboxes = document.querySelectorAll('input:checked');
-            // Create an array of types from the checked checkboxes
-            const types = [];
-            checkedboxes.forEach((checkbox) => {
-                types.push(checkbox.value);
-            });
-            // Construct the filter expression using the array of types
-            let filter = ['in', 'TYPE'];
-            types.forEach((type) => {
-                filter.push(type);
-            });
-            // Set the map's filter
-            map.setFilter('csvData', filter);
-        };
+        // function filterFeatures() {
+        //     // Get all checked checkboxes
+        //     const checkedboxes = document.querySelectorAll('input:checked');
+        //     // Create an array of types from the checked checkboxes
+        //     const types = [];
+        //     checkedboxes.forEach((checkbox) => {
+        //         types.push(checkbox.value);
+        //     });
+        //     // Construct the filter expression using the array of types
+        //     let filter = ['in', 'TYPE'];
+        //     types.forEach((type) => {
+        //         filter.push(type);
+        //     });
+        //     // Set the map's filter
+        //     map.setFilter('csvData', filter);
+        // };
 
         map.on('load', function () {
             $.ajax({
