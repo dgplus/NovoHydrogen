@@ -45,12 +45,12 @@
                         Solar
                     </label>
                     <label class='menu-item'>
-                        <input type='checkbox' id='Solar + Virtual Wind' value='Solar + Virtual Wind' checked />
-                        Solar + Virtual Wind
+                        <input type='checkbox' id='Solar + Wind' value='Solar + Wind' checked />
+                        Solar + Wind
                     </label>
                     <label class='menu-item'>
-                        <input type='checkbox' id='Wind + Solar' value='Wind + Solar' checked />
-                        Wind + Solar
+                        <input type='checkbox' id='Solar + Virtual Wind' value='Solar + Virtual Wind' checked />
+                        Solar + Virtual Wind
                     </label>
                 </div>
             </div>
@@ -149,23 +149,23 @@
                         'circle-color': [
                             "match",
                             ["get", "PowerSource"],
-                            ["Wind + Solar"],
+                            ["Solar"],
+                            "#f4e158",
+                            ["Solar + Wind"],
                             "#b21fc8",
                             ["Solar + Virtual Wind"],
-                            "#71e5f5",
-                            ["Solar"],
-                            "#f4e158"
+                            "#71e5f5"
                         ],
                         'circle-opacity': 0.7,
                         'circle-stroke-color': [
                             "match",
                             ["get", "PowerSource"],
-                            ["Wind + Solar"],
+                            ["Solar"],
+                            "#f4e158",
+                            ["Solar + Wind"],
                             "#b21fc8",
                             ["Solar + Virtual Wind"],
-                            "#71e5f5",
-                            ["Solar"],
-                            "#f4e158"
+                            "#71e5f5"
                         ],
                         'circle-stroke-width': 0.75
                     }
@@ -242,7 +242,8 @@
                     if (!document.fullscreenElement) {
                         elem.requestFullscreen().catch((err) => {
                             alert(
-                                `Error attempting to enable fullscreen mode: ${err.message} (${err.name})`);
+                                `Error attempting to enable fullscreen mode: ${err.message} (${err.name})`
+                                );
                         });
                     } else {
                         document.exitFullscreen();
