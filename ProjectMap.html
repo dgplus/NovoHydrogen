@@ -214,7 +214,7 @@
 
                     //add Popup to map
 
-                    new mapboxgl.Popup()
+                    new mapboxgl.Popup({className: 'mapboxgl-popup-content'})
                         .setLngLat(coordinates)
                         .setHTML(description)
                         .addTo(map);
