@@ -150,17 +150,19 @@ h4 {
 }
 
 .mapboxgl-popup-content {
-    background-color: #f9f9f9 !important;
+    background-color: #d1cdca !important;
+    border-width: 2px;
     border-radius: 10px !important;
+    border-color: #43ce00;
     padding: 10px !important;
-    font-family: Arial, sans-serif !important;
+    font-family: 'PT Sans', sans-serif !important;
     color: #333 !important;
 }
 
-.custom-popup .mapboxgl-popup-content{
+/* .custom-popup .mapboxgl-popup-content{
     white-space: nowrap;
     width: fit-content !important;
     border-width: 20px !important;
     border-color: #43ce00 !important;
     border-radius: 20px !important;
-}
+} */
