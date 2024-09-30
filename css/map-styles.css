@@ -150,7 +150,7 @@ h4 {
 }
 
 .mapboxgl-popup-content {
-    background-color: #d1cdca !important;
+    background-color: #f1e8e0 !important;
     border-width: 2px !important;
     border-radius: 10px !important;
     border-color: #43ce00 !important;
@@ -160,7 +160,7 @@ h4 {
 }
 
 .mapboxgl-popup-tip {
-    border-top-color: #d1cdca !important;
+    border-top-color: #f1e8e0 !important;
 }
 
 /* .custom-popup .mapboxgl-popup-content{
