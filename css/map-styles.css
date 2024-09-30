@@ -149,7 +149,7 @@ h4 {
     cursor: pointer;
 }
 
-.custom-popup {
+.custom-popup .mapboxgl-popup-content{
     white-space: nowrap;
     width: fit-content !important;
     border-width: 20px !important;
