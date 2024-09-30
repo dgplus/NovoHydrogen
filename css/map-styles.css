@@ -151,9 +151,9 @@ h4 {
 
 .mapboxgl-popup-content {
     background-color: #d1cdca !important;
-    border-width: 2px;
+    border-width: 2px !important;
     border-radius: 10px !important;
-    border-color: #43ce00;
+    border-color: #43ce00 !important;
     padding: 10px !important;
     font-family: 'PT Sans', sans-serif !important;
     color: #333 !important;
