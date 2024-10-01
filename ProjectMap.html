@@ -194,15 +194,14 @@
                     power = title(type);
 
                     var description =
-                        `<h3>` + `<b>` + e.features[0].properties.ProjectName + `</b>` + `</h3>` + '<hr />' +
-                        `\n<h4>` + `<b>` + `Capacity: ` + `</b>` + Number(parseFloat(e.features[0]
+                        `<h3>` + e.features[0].properties.ProjectName + `</h3>` + '<hr />' +
+                        `\n<h4>` + `Power Source: ` + power + `</h4>` +
+                        `\n<h4>` + `Capacity: ` + Number(parseFloat(e.features[0]
                             .properties
                             .CapacityTPD).toFixed(2)).toLocaleString('en', {
                             minimumFractionDigits: 2
                         }) + ` TPD` + `</h4>` +
-                        `\n<h4>` + `<b>` + `Power Source: ` + `</b>` + power + `</h4>`
-                        `\n<h4> `+ e.features[0].properties.City + `, ` + e.features[0].properties.State + `</h4>`
-                        ;
+                        `\n<h4> `+ e.features[0].properties.City + `, ` + e.features[0].properties.State + `</h4>`;
 
                     // Ensure that if the map is zoomed out such that multiple
                     // copies of the feature are visible, the popup appears
