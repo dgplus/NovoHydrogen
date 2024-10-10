@@ -142,7 +142,11 @@
                         'icon-size': 0.12,
                         'icon-image': 'NovoIcon',
                         'visibility': 'visible',
-                        'symbol-z-order': 'source' // Ensures overlapping markers are stacked properly
+                        'icon-allow-overlap': true,
+          'icon-ignore-placement': true,
+                        'symbol-z-order': 'source',
+                          'text-allow-overlap': true // doesnt make sense I know, but I tried this
+
                     },
                     'minzoom': 0 // Ensures visibility at all zoom levels
                 });
