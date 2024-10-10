@@ -1,32 +1,9 @@
 body {
     margin: 0;
     padding: 0;
-    font: normal 14px/22px 'Inter';
+    font: normal 14px 'Inter';
 }
 
-.pt-sans-regular {
-    font-family: "PT Sans", sans-serif;
-    font-weight: 400;
-    font-style: normal;
-}
-
-.pt-sans-bold {
-    font-family: "PT Sans", sans-serif;
-    font-weight: 700;
-    font-style: normal;
-}
-
-.pt-sans-regular-italic {
-    font-family: "PT Sans", sans-serif;
-    font-weight: 400;
-    font-style: italic;
-}
-
-.pt-sans-bold-italic {
-    font-family: "PT Sans", sans-serif;
-    font-weight: 700;
-    font-style: italic;
-}
 
 #map {
     position: absolute;
@@ -41,7 +18,7 @@ body {
 }
 
 .mapboxgl-map {
-    font: normal 13px/20px 'Inter' !important;
+    font: normal 14px 'Inter' !important;
 }
 
 .map-overlay {
@@ -152,7 +129,7 @@ h4 {
 .mapboxgl-popup-content {
     background-color: #f1e8e0 !important;
     border: 2px #43ce00 !important;
-    padding: 15px !important;
+    padding: 20px !important;
     font-family: 'Inter', sans-serif !important;
     color: #444242 !important;
 }
@@ -160,6 +137,7 @@ h4 {
 .mapboxgl-popup-content p {
     margin:0;
     line-height: 1.25em;
+    padding-bottom: 3px;
 
 }
 
