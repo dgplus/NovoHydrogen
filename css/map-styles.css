@@ -127,8 +127,7 @@ h4 {
 }
 
 .mapboxgl-popup-content {
-    background-color: #000 !important;
-    border: 2px #43ce00 !important;
+    background-color: #fff !important;
     padding: 20px !important;
     font-family: 'Inter', sans-serif !important;
     color: #444242 !important;
