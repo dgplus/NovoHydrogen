@@ -1,7 +1,7 @@
 body {
     margin: 0;
     padding: 0;
-    font: normal 14px/22px 'PT Sans';
+    font: normal 14px/22px 'Inter';
 }
 
 .pt-sans-regular {
@@ -41,7 +41,7 @@ body {
 }
 
 .mapboxgl-map {
-    font: normal 13px/20px 'PT Sans' !important;
+    font: normal 13px/20px 'Inter' !important;
 }
 
 .map-overlay {
@@ -152,11 +152,15 @@ h4 {
 .mapboxgl-popup-content {
     background-color: #f1e8e0 !important;
     border: 2px #43ce00 !important;
-    border-radius: 12px !important;
-    padding: 10px !important;
+    padding: 15px !important;
     font-family: 'Inter', sans-serif !important;
-    line-height: 1.25em;
     color: #444242 !important;
+}
+
+.mapboxgl-popup-content p {
+    margin:0;
+    line-height: 1.25em;
+
 }
 
 .mapboxgl-popup-tip {
