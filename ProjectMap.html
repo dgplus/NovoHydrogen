@@ -13,8 +13,7 @@
     <link href="css/map-styles.css" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=PT+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=PT+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
     <style></style>
 
 </head>
@@ -105,19 +104,18 @@
         //     map.setFilter('csvData', filter);
         // };
 
-        map.on('load', function () {
+        map.on('load', function() {
             $.ajax({
                 type: "GET",
                 //YOUR TURN: Replace with csv export link
                 url: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSQzC_WSTHoaWkwJzOhuwao-v8wUDURqX53CPA-AJIlhK7xJPsPblt-0jqXFYHmsM4hvTqtATjMXy_i/pub?gid=0&single=true&output=csv',
                 dataType: "text",
-                success: function (csvData) {
+                success: function(csvData) {
                     makeGeoJSON(csvData);
                 }
             });
             map.loadImage(
-                'images/NovoHydrogen_Mark.png',
-                (error, image) => {
+                'images/NovoHydrogen_Mark.png', (error, image) => {
                     if (error) throw error;
 
                     // Add the image to the map style.
@@ -131,7 +129,7 @@
                 lonfield: 'Lon',
                 delimiter: ',',
                 numericFields: 'CapacityTPD',
-            }, function (err, geojson) {
+            }, function(err, geojson) {
                 data = geojson;
 
                 //Add the the layer to the map
@@ -144,37 +142,40 @@
                     },
                     'layout': {
                         'icon-size': .075,
-                        'icon-image': 'NovoIcon'
-                        // [
-                        //     "match",
-                        //     ["get", "PowerSource"],
-                        //     ["Solar"],
-                        //     "#f4e158",
-                        //     ["Solar + Wind"],
-                        //     "#b21fc8",
-                        //     ["Solar + Virtual Wind"],
-                        //     "#71e5f5",
-                        //     "#71e5f5"
-                        // ],
-                        // 'circle-opacity': 0.7,
-                        // 'circle-stroke-color': [
-                        //     "match",
-                        //     ["get", "PowerSource"],
-                        //     ["Solar"],
-                        //     "#f4e158",
-                        //     ["Solar + Wind"],
-                        //     "#b21fc8",
-                        //     ["Solar + Virtual Wind"],
-                        //     "#71e5f5",
-                        //     "#71e5f5"
-                        // ],
-                        // 'circle-stroke-width': 0.75
-                    }
+                        'icon-image': 'NovoIcon',
+                        'visibility': 'visible'
+                            // [
+                            //     "match",
+                            //     ["get", "PowerSource"],
+                            //     ["Solar"],
+                            //     "#f4e158",
+                            //     ["Solar + Wind"],
+                            //     "#b21fc8",
+                            //     ["Solar + Virtual Wind"],
+                            //     "#71e5f5",
+                            //     "#71e5f5"
+                            // ],
+                            // 'circle-opacity': 0.7,
+                            // 'circle-stroke-color': [
+                            //     "match",
+                            //     ["get", "PowerSource"],
+                            //     ["Solar"],
+                            //     "#f4e158",
+                            //     ["Solar + Wind"],
+                            //     "#b21fc8",
+                            //     ["Solar + Virtual Wind"],
+                            //     "#71e5f5",
+                            //     "#71e5f5"
+                            // ],
+                            // 'circle-stroke-width': 0.75
+                    },
+                    'minzoom': 0 // Ensures visibility at all zoom levels
+
                 });
 
                 // When a click event occurs on a feature in the csvData layer, open a popup at the
                 // location of the feature, with description HTML from its properties.
-                map.on('click', 'csvData', function (e) {
+                map.on('click', 'csvData', function(e) {
                     var coordinates = e.features[0].geometry.coordinates.slice();
 
                     //set popup text
@@ -186,7 +187,7 @@
 
                     // Format the type string with first-letter-capitalization
                     title = function toTitleCase(type) {
-                        return type.toLowerCase().split(' ').map(function (word) {
+                        return type.toLowerCase().split(' ').map(function(word) {
                             return (word.charAt(0).toUpperCase() + word.slice(1));
                         }).join(' ');
                     };
@@ -201,8 +202,8 @@
                             .CapacityTPD).toFixed(2)).toLocaleString('en', {
                             minimumFractionDigits: 2
                         }) + ` TPD` + `</p>` +
-                        `\n<p> `+ e.features[0].properties.City + `, ` + e.features[0].properties.State + `</p>`;
-
+                        `\n<p> ` + e.features[0].properties.City + `, ` + e.features[0].properties.State + `</p>`;
+                    `\n<p><a href="` + e.features[0].properties.Link + `" target="_blank">Project Details</a></p>`;
                     // Ensure that if the map is zoomed out such that multiple
                     // copies of the feature are visible, the popup appears
                     // over the copy being pointed to.
@@ -219,12 +220,12 @@
                 });
 
                 // Change the cursor to a pointer when the mouse is over the places layer.
-                map.on('mouseenter', 'csvData', function () {
+                map.on('mouseenter', 'csvData', function() {
                     map.getCanvas().style.cursor = 'pointer';
                 });
 
                 // Change it back to a pointer when it leaves.
-                map.on('mouseleave', 'places', function () {
+                map.on('mouseleave', 'places', function() {
                     map.getCanvas().style.cursor = '';
                 });
 
@@ -250,6 +251,7 @@
                 }
             });
         };
+
     </script>
 
 </body>
