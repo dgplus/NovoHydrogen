@@ -198,9 +198,10 @@
                         `<h3>` + e.features[0].properties.ProjectName + `</h3>` + '<hr />' +
                         `\n<p>` + `Power Source: ` + power + `</p>` +
                         `\n<p>` + `Capacity: ` + Number(parseFloat(e.features[0].properties.CapacityTPD).toFixed(2)).toLocaleString('en', {
-                            minimumFractionDigits: 2
+                            minimumFractionDigits: 0
                         }) + ` TPD` + `</p>` +
                         `\n<p> ` + e.features[0].properties.City + `, ` + e.features[0].properties.State + `</p>` +
+                        `\n<p>` + `Status: ` + e.features[0].properties.OtherInfo + `</p>` +
                         `\n<p><a href="` + e.features[0].properties.Link + `" target="_blank">Project Details</a></p>`;
 
                     // Ensure that if the map is zoomed out such that multiple
