@@ -197,13 +197,12 @@
                     var description =
                         `<h3>` + e.features[0].properties.ProjectName + `</h3>` + '<hr />' +
                         `\n<p>` + `Power Source: ` + power + `</p>` +
-                        `\n<p>` + `Capacity: ` + Number(parseFloat(e.features[0]
-                            .properties
-                            .CapacityTPD).toFixed(2)).toLocaleString('en', {
+                        `\n<p>` + `Capacity: ` + Number(parseFloat(e.features[0].properties.CapacityTPD).toFixed(2)).toLocaleString('en', {
                             minimumFractionDigits: 2
                         }) + ` TPD` + `</p>` +
-                        `\n<p> ` + e.features[0].properties.City + `, ` + e.features[0].properties.State + `</p>`;
-                    `\n<p><a href="` + e.features[0].properties.Link + `" target="_blank">Project Details</a></p>`;
+                        `\n<p> ` + e.features[0].properties.City + `, ` + e.features[0].properties.State + `</p>` +
+                        `\n<p><a href="` + e.features[0].properties.Link + `" target="_blank">Project Details</a></p>`;
+
                     // Ensure that if the map is zoomed out such that multiple
                     // copies of the feature are visible, the popup appears
                     // over the copy being pointed to.
@@ -251,7 +250,6 @@
                 }
             });
         };
-
     </script>
 
 </body>
