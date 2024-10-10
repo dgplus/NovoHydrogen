@@ -139,36 +139,12 @@
                         'data': geojson
                     },
                     'layout': {
-                        'icon-size': .100,
+                        'icon-size': 0.12,
                         'icon-image': 'NovoIcon',
-                        'visibility': 'visible'
-                            // [
-                            //     "match",
-                            //     ["get", "PowerSource"],
-                            //     ["Solar"],
-                            //     "#f4e158",
-                            //     ["Solar + Wind"],
-                            //     "#b21fc8",
-                            //     ["Solar + Virtual Wind"],
-                            //     "#71e5f5",
-                            //     "#71e5f5"
-                            // ],
-                            // 'circle-opacity': 0.7,
-                            // 'circle-stroke-color': [
-                            //     "match",
-                            //     ["get", "PowerSource"],
-                            //     ["Solar"],
-                            //     "#f4e158",
-                            //     ["Solar + Wind"],
-                            //     "#b21fc8",
-                            //     ["Solar + Virtual Wind"],
-                            //     "#71e5f5",
-                            //     "#71e5f5"
-                            // ],
-                            // 'circle-stroke-width': 0.75
+                        'visibility': 'visible',
+                        'symbol-z-order': 'source' // Ensures overlapping markers are stacked properly
                     },
                     'minzoom': 0 // Ensures visibility at all zoom levels
-
                 });
 
                 // When a click event occurs on a feature in the csvData layer, open a popup at the
