@@ -102,133 +102,120 @@
         //     map.setFilter('csvData', filter);
         // };
 
-        map.on('load', function() {
-            $.ajax({
-                type: "GET",
-                //YOUR TURN: Replace with csv export link
-                url: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSQzC_WSTHoaWkwJzOhuwao-v8wUDURqX53CPA-AJIlhK7xJPsPblt-0jqXFYHmsM4hvTqtATjMXy_i/pub?gid=0&single=true&output=csv',
-                dataType: "text",
-                success: function(csvData) {
-                    makeGeoJSON(csvData);
-                }
-            });
-            map.loadImage(
-                'images/NovoHydrogen_Mark2.png', (error, image) => {
-                    if (error) throw error;
-
-                    // Add the image to the map style.
-                    map.addImage('NovoIcon', image);
-                });
+    map.on('load', function() {
+        $.ajax({
+            type: "GET",
+            // Replace with your CSV export link
+            url: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSQzC_WSTHoaWkwJzOhuwao-v8wUDURqX53CPA-AJIlhK7xJPsPblt-0jqXFYHmsM4hvTqtATjMXy_i/pub?gid=0&single=true&output=csv',
+            dataType: "text",
+            success: function(csvData) {
+                makeGeoJSON(csvData);
+            }
         });
+        
+        // Load default icon
+        map.loadImage(
+            'images/NovoHydrogen_Mark2.png',
+            (error, image) => {
+                if (error) throw error;
+                map.addImage('NovoIcon', image);
+            }
+        );
 
-        function makeGeoJSON(csvData) {
-            csv2geojson.csv2geojson(csvData, {
-                latfield: 'Lat',
-                lonfield: 'Lon',
-                delimiter: ',',
-                numericFields: 'CapacityTPD',
-            }, function(err, geojson) {
-                data = geojson;
+        // Load "Early Stage" icon
+        map.loadImage(
+            'images/NovoHydrogen_Mark1.png',
+            (error, image) => {
+                if (error) throw error;
+                map.addImage('EarlyStageIcon', image);
+            }
+        );
+    });
 
-                //Add the the layer to the map
-                map.addLayer({
-                    'id': 'csvData',
-                    'type': 'symbol',
-                    'source': {
-                        'type': 'geojson',
-                        'data': geojson
-                    },
-                    'layout': {
-                        'icon-size': 0.10,
-                        'icon-image': 'NovoIcon',
-                        'visibility': 'visible',
-                        'icon-allow-overlap': true,
-          'icon-ignore-placement': true,
-                        'symbol-z-order': 'source',
-                          'text-allow-overlap': true // doesnt make sense I know, but I tried this
+    function makeGeoJSON(csvData) {
+        csv2geojson.csv2geojson(csvData, {
+            latfield: 'Lat',
+            lonfield: 'Lon',
+            delimiter: ',',
+            numericFields: 'CapacityTPD',
+        }, function(err, geojson) {
+            data = geojson;
 
-                    },
-                    'minzoom': 0 // Ensures visibility at all zoom levels
-                });
-
-                // When a click event occurs on a feature in the csvData layer, open a popup at the
-                // location of the feature, with description HTML from its properties.
-                map.on('click', 'csvData', function(e) {
-                    var coordinates = e.features[0].geometry.coordinates.slice();
-
-                    //set popup text
-                    //You can adjust the values of the popup to match the headers of your CSV.
-                    // For example: e.features[0].properties.Name is retrieving information from the field Name in the original CSV.
-
-                    // Get the 'TYPE' property from the feature's properties
-                    var type = String(e.features[0].properties.PowerSource);
-
-                    // Format the type string with first-letter-capitalization
-                    title = function toTitleCase(type) {
-                        return type.toLowerCase().split(' ').map(function(word) {
-                            return (word.charAt(0).toUpperCase() + word.slice(1));
-                        }).join(' ');
-                    };
-
-                    power = title(type);
-
-                    var description =
-                        `<h3>` + e.features[0].properties.ProjectName + `</h3>` + '<hr />' +
-                        `\n<p>` + `Power Source: ` + power + `</p>` +
-                        `\n<p>` + `Capacity: ` + Number(parseFloat(e.features[0].properties.CapacityTPD).toFixed(2)).toLocaleString('en', {
-                            minimumFractionDigits: 0
-                        }) + ` TPD` + `</p>` +
-                        `\n<p> ` + e.features[0].properties.City + `, ` + e.features[0].properties.State + `</p>` +
-                        `\n<p>` + `Status: ` + e.features[0].properties.OtherInfo + `</p>` +
-                        `\n<p><a href="` + e.features[0].properties.Link + `" target="_blank">Project Details</a></p>`;
-
-                    // Ensure that if the map is zoomed out such that multiple
-                    // copies of the feature are visible, the popup appears
-                    // over the copy being pointed to.
-                    while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
-                        coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
-                    }
-
-                    //add Popup to map
-
-                    new mapboxgl.Popup()
-                        .setLngLat(coordinates)
-                        .setHTML(description)
-                        .addTo(map);
-                });
-
-                // Change the cursor to a pointer when the mouse is over the places layer.
-                map.on('mouseenter', 'csvData', function() {
-                    map.getCanvas().style.cursor = 'pointer';
-                });
-
-                // Change it back to a pointer when it leaves.
-                map.on('mouseleave', 'places', function() {
-                    map.getCanvas().style.cursor = '';
-                });
-
-                // var bbox = turf.bbox(geojson);
-                // map.fitBounds(bbox, {
-                //     padding: 50
-                // });
-
-
-                fullscreen.addEventListener('click', toggleFullscreen)
-
-                function toggleFullscreen() {
-                    let elem = document.getElementById("mapcontainer");
-                    if (!document.fullscreenElement) {
-                        elem.requestFullscreen().catch((err) => {
-                            alert(
-                                `Error attempting to enable fullscreen mode: ${err.message} (${err.name})`
-                            );
-                        });
-                    } else {
-                        document.exitFullscreen();
-                    }
+            // Add a new property for icon type based on "OtherInfo"
+            geojson.features.forEach(feature => {
+                if (feature.properties.OtherInfo === "Early Stage") {
+                    feature.properties.iconType = 'EarlyStageIcon';
+                } else {
+                    feature.properties.iconType = 'NovoIcon';
                 }
             });
-        };
+
+            // Add the layer to the map
+            map.addLayer({
+                'id': 'csvData',
+                'type': 'symbol',
+                'source': {
+                    'type': 'geojson',
+                    'data': geojson
+                },
+                'layout': {
+                    'icon-size': 0.10,
+                    'icon-image': ['get', 'iconType'], // Dynamic icon type
+                    'visibility': 'visible',
+                    'icon-allow-overlap': true,
+                    'icon-ignore-placement': true,
+                    'symbol-z-order': 'source',
+                    'text-allow-overlap': true
+                },
+                'minzoom': 0 // Ensures visibility at all zoom levels
+            });
+
+            // Modify click event
+            map.on('click', 'csvData', function(e) {
+                var feature = e.features[0];
+                var coordinates = feature.geometry.coordinates.slice();
+
+                // Check for "Early Stage" and disable popup
+                if (feature.properties.OtherInfo === "Early Stage") {
+                    return; // Disable popup for "Early Stage"
+                }
+
+                // Set popup text
+                var power = title(feature.properties.PowerSource);
+
+                var description =
+                    `<h3>` + feature.properties.ProjectName + `</h3>` + '<hr />' +
+                    `\n<p>` + `Power Source: ` + power + `</p>` +
+                    `\n<p>` + `Capacity: ` + Number(parseFloat(feature.properties.CapacityTPD).toFixed(2)).toLocaleString('en', {
+                        minimumFractionDigits: 0
+                    }) + ` TPD` + `</p>` +
+                    `\n<p> ` + feature.properties.City + `, ` + feature.properties.State + `</p>` +
+                    `\n<p>` + `Status: ` + feature.properties.OtherInfo + `</p>` +
+                    `\n<p><a href="` + feature.properties.Link + `" target="_blank">Project Details</a></p>`;
+
+                // Ensure popup appears over the correct feature
+                while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
+                    coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
+                }
+
+                // Add popup to map
+                new mapboxgl.Popup()
+                    .setLngLat(coordinates)
+                    .setHTML(description)
+                    .addTo(map);
+            });
+
+            // Change the cursor to a pointer when hovering over features
+            map.on('mouseenter', 'csvData', function() {
+                map.getCanvas().style.cursor = 'pointer';
+            });
+
+            map.on('mouseleave', 'csvData', function() {
+                map.getCanvas().style.cursor = '';
+            });
+        });
+    }
+
     </script>
 
 </body>
